@@ -1,0 +1,72 @@
+{% extends "_site.html" %}
+
+{% set title = "Inventory" %}
+
+{% block content %}
+<style>
+  thead {
+    color: white;
+    background-color: goldenrod;
+  }
+  tbody {
+    color: black;
+    background-color: lemonchiffon;
+  }
+
+  table {
+    border: 1px solid goldenrod;
+    width: 100%;
+  }
+
+  tr.disabled {
+	  font-style: italic;
+  }
+  tr.disabled td:nth-child(1):after {
+	  content: " (disabled)";
+	  color: grey;
+  }
+
+  tr.lowStock td:nth-child(2):after {
+	  content: " (Low Stock)";
+	  color: grey;
+  }
+</style>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Inventory Level</th>
+      <th class="no-select">Stock</th>
+      <th class="no-select">Availability</th>
+    </tr>
+  </thead>
+
+  <tbody align="center">
+	{% for key, ingredient in inventory.items() %}
+	<form method="POST" action="/staff/inventory/update">
+	<tr class='{{ " ".join((["lowStock"] if ingredient.checkLowStock() else []) + (["disabled"] if not ingredient.available else []))}}'>
+        <td>{{ ingredient.name }}</td>
+        <td>
+          {{ ingredient.quantity }} / {{ ingredient.quantity_max }}
+          {{ ingredient.suffix }}
+        </td>
+        <td class="no-select">
+          <input name="new_stock" type="number" min="0" max="{{ ingredient.quantity_max }}" value="{{ ingredient.quantity }}" />
+          <input name="id" type="hidden" value="{{ ingredient.id }}" />
+          <button type="submit" name="update_stock">Update</button>
+        </td>
+        <td class="no-select">
+		  {% if ingredient.available %}
+		  	<button type="submit" name="disable">Disable</button>
+		  {% else %}
+		  	<button type="submit" name="enable" {% if ingredient.quantity == 0 %}disabled{% endif %}>Enable</button>
+          {% endif %}
+        </td>
+	</tr>
+	</form>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

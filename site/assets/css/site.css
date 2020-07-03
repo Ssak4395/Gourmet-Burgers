@@ -1,0 +1,168 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+
+.no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar * {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(229, 207, 207, 0.4) !important;
+}
+
+#loading {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+
+  background-color: rgba(34, 17, 8, 0.815);
+  color: #fdf6f0;
+
+  z-index: 10;
+  
+  text-align: center;
+  pointer-events: none;
+  
+  transition: all 2s;
+
+  opacity: 0;
+}
+
+#loading.active {
+  opacity: 1;
+}
+
+#loading:not(.active), #loading:not(.active) * {
+  background-color: rgba(34, 17, 8, 0);
+
+  opacity: 0;
+}
+
+#loading img {
+  max-width: 1000px;
+}
+
+html,
+body {
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  /* padding: 0; */
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  background-image: url("../img/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  background-attachment: fixed;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1200px;
+  /* width: 100%; */
+  flex: 1;
+}
+
+header {
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(rgba(91, 43, 15 1)),
+    to(rgba(0, 0, 0, 0))
+  );
+}
+header .logo {
+  margin: 0 auto;
+  text-align: center;
+  max-width: 100px;
+}
+
+header .menu {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+header .menu a {
+  flex: 1;
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+header .menu a:hover {
+  cursor: pointer;
+  background-color: #a7a7a7;
+}
+
+header .menu a.active {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+footer {
+  text-align: right;
+  color: white;
+}
+
+footer .greybox {
+  margin: 10px auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+footer .greybox .staff {
+  float: left;
+  margin-left: 5px;
+}
+footer .greybox .staff a,
+footer .greybox .staff a:visited {
+  text-decoration: none;
+  color: white;
+}
+
+
+footer ul {
+  margin: 0;
+}
+footer ul li {
+  display: inline;
+}
+
+#content {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.cart {
+  display: none;
+  float: right;
+  color: black;
+  padding: 10px;
+  padding-top: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: #fed676;
+  transition: padding-top 0.3s ease;
+}
+
+.cart:hover {
+  padding-top: 15px;
+}
+
+.cart.active {
+  display: initial;
+}

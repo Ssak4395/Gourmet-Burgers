@@ -1,0 +1,59 @@
+#dashboardContainer {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 80%;
+  background-color: rgba(255, 255, 255, 0.9);
+
+  border-radius: 5px;
+}
+
+#dashboardContainer table {
+  border-collapse: collapse;
+}
+
+#dashboardContainer table thead {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.8);
+}
+
+#dashboardContainer table tbody tr:not(:last-child) {
+  border-top: 1px solid rgba(127, 127, 127, 0.8);
+}
+
+#dashboardContainer table tr:not(:last-child) td:first-child {
+  font-size: 3rem;
+}
+
+#dashboardContainer table tr:not(:last-child) td:first-child::before {
+  content: "#";
+  font-size: 2rem;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+#dashboardContainer table tbody tr:last-child {
+  display: none;
+}
+
+#dashboardContainer table tbody tr:last-child:only-child {
+  text-align: center;
+  font-style: italic;
+  display: table-row;
+}
+
+.orderViewToggle {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.orderViewToggle a, .orderViewToggle a:visited {
+  background-color: rgba(0,0,0,0.2);
+  color: white;
+  text-decoration: none;
+  border: 1px solid white;
+  padding: 3px 5px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.orderViewToggle a:hover {
+  background-color: white;
+  color: black;
+}

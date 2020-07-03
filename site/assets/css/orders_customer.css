@@ -1,0 +1,140 @@
+.triangle {
+  margin: 0 auto;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 50px 50px 0 50px;
+  border-color: #fed676 transparent transparent transparent;
+}
+
+section[name="form"] {
+  background-color: #fed676;
+  text-align: center;
+  font-size: 2rem;
+  padding: 10px 0;
+}
+section[name="form"] form {
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
+}
+section[name="form"] form > * {
+  flex: 1;
+}
+section[name="form"] form label {
+  flex-basis: 40%;
+}
+
+section[name="form"] form input[type="text"] {
+  border: 0;
+  border-bottom: 1px solid #fed676;
+  outline: none;
+  flex-basis: 40%;
+  font-size: 2rem;
+  background-color: transparent;
+}
+section[name="form"] form button {
+  flex-basis: 20%;
+}
+section[name="form"] form input[type="text"]::placeholder {
+  font-size: 2rem;
+}
+section[name="status"] {
+  background-color: rgba(255, 255, 255, 0.9);
+
+  padding-bottom: 20px;
+
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+
+  transform: scaleY(1);
+  transform-origin: top;
+  transition: transform 0.25s ease;
+}
+
+section[name="status"]:not(.active) {
+  transform: scaleY(0);
+}
+section[name="status"].active {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+#error {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 2rem;
+}
+#error:not(:empty) {
+  margin-top: 98px;
+}
+#error:not(:empty) ~ #statusContainer {
+  opacity: 0;
+}
+
+#statusContainer {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+#statusContainer > div {
+  flex: 1;
+  flex-basis: 50%;
+}
+
+#statusContainer > div:nth-child(2),
+#statusContainer > div:nth-child(4) {
+  text-align: right;
+}
+
+#statusContainer > div:nth-child(5) {
+  flex-grow: 1;
+  flex-basis: 100%;
+  margin-top: 10px;
+}
+
+#statusContainer > div:nth-child(6) {
+  text-align: right;
+}
+
+.orderItem {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border-bottom: 1px solid grey;
+}
+.orderItem > div {
+  flex: 1;
+  flex-basis: 15%;
+}
+.orderItem > div:nth-child(1) {
+  text-align: center;
+}
+
+.orderItem > div:nth-child(2) {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  flex-basis: 70%;
+}
+.orderItem > div:nth-child(2) span {
+  width: 100%;
+}
+.orderItem.custom > div:nth-child(2) span:nth-child(1):after {
+  content: "*";
+}
+
+.orderItem > div:nth-child(2) span:nth-child(2) {
+  font-style: italic;
+}
+
+.orderItem > div:nth-child(3) {
+  text-align: right;
+}
+.orderItem > div:nth-child(3):before {
+  content: "$";
+}

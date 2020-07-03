@@ -1,0 +1,54 @@
+{% extends "_site.html" %} 
+
+{% set title = "Orders Overview" %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="/assets/css/orders_staff.css"/>
+{% endblock %}
+
+{% block content %}
+<div id="dashboardContainer">
+  <table width="100%" align="center">
+    <thead>
+      <tr>
+        <th>Orders ID</th>
+        <th>Order Details</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order in orders %}
+      <tr>
+        <td align="center">{{ order.id }}</td>
+        <td>
+          {% for menuItem in order.items %}
+          <div><b>{{ menuItem.name }}</b>
+          <br />
+          {% for item in menuItem.components %}
+          {% if item.quantity %}<i>{{ item.quantity }}{{item.suffix}} {{ item.name }}</i>
+          <br />
+          {% endif %}{% endfor %} {% endfor %}
+        </td>
+        <td align="center">
+          {% if order.status == False %}
+          <form method="POST" action="/staff/orders/update">
+            <input type="hidden" name="orderID" value="{{ order.id }}">
+            <button type="submit">Complete Order!</button>
+          </form>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+      <tr>
+        <td align="center" colspan="3">No orders to prepare! Go slack off now :)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="orderViewToggle">{% if all %}
+<a href=".">View only active orders</a>
+{% else %}
+<a href="?all">View all orders</a>
+{% endif %}
+</div>
+{% endblock %}

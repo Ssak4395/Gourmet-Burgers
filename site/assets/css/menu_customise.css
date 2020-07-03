@@ -1,0 +1,108 @@
+#customiseContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+body:not(.show-modal) #customiseContainer {
+  display: none;
+}
+
+#customiseContainer .container {
+  margin: 70px auto;
+  pointer-events: none;
+}
+
+#customiseContainer .container #modal {
+  pointer-events: all;
+}
+
+#modal > * {
+  padding: 20px;
+}
+#modal .header {
+  background-color: #fed676;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+#modal .content {
+  background-color: white;
+}
+
+#modal .header::before {
+  content: "Customising: ";
+}
+#modal .header {
+  font-weight: bold;
+}
+
+#modal .content table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#modal .content table tbody tr:not(:last-child) {
+  border-bottom: 1px solid grey;
+}
+#modal .content table tbody tr {
+  height: 50px;
+}
+#modal .content table tbody tr.disabled {
+  color: grey;
+  font-style: italic;
+}
+#modal .content table tbody td {
+  text-align: center;
+}
+#modal .content tbody .selector {
+  height: 30px;
+}
+#modal .content tbody .selector > * {
+  height: 100%;
+}
+#modal .content tbody .selector input {
+  width: 50px;
+  text-align: center;
+  padding: 0;
+  border: none;
+  background-color: rgba(127, 127, 127, 0.1);
+}
+
+#modal .content tbody .selector button {
+  width: 30px;
+  background-color: #fed676;
+  border: none;
+}
+
+#modal .content tbody .selector button.disabled {
+  background-color: grey;
+}
+#modal .content tbody .selector button:not(.disabled) {
+  cursor: pointer;
+}
+
+#modal .content tbody .selector button:first-child {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+#modal .content tbody .selector button:last-child {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+#modal .footer {
+  background-color: #fed676;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  text-align: right;
+  font-size: 24px;
+}
+
+#modal .footer button[name=submit] {
+    font-size: 24px;
+}

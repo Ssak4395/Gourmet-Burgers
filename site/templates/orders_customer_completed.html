@@ -1,0 +1,12 @@
+{% extends "_site.html" %}
+
+{% set title = "Order Completed" %}
+
+{% block content %}
+<div style="color: white; text-align: center">
+	<h2>Order Placed</h2>
+	<div>Your order ID is #{{ orderID }}</div>
+	<a href="/status#{{orderID}}"><button style="height: 30px">Track my Order</button></a>
+	<div style="text-align: center; font-size: 150px;">&#10004;</div>
+</div>
+{% endblock %}

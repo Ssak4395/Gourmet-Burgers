@@ -1,0 +1,62 @@
+{% extends "_site.html" %}
+
+{% set title = "Menu" %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" media="screen" href="/assets/css/menu.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="/assets/css/menu_customise.css" />
+<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clamp-js@0.7.0/clamp.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="search">
+  <input class="search-bar" type="text" placeholder="Search for an item..."></input>
+  <select class="sort-order" autocomplete="off">
+    <option value="nameAsc">Name (A-Z)</option>
+    <option value="nameDesc">Name (Z-A)</option>
+    <option value="priceAsc">Price (Ascending)</option>
+    <option value="priceDesc">Price (Descending)</option>
+  </select> 
+</div>
+
+<div class="menu no-select">
+  <div class="categories">
+    <div>Filter by Category</div>
+    <ul>
+      <!-- Categories -->
+    </ul>
+  </div>
+
+  <div class="no-items"></div>
+  <div id="menu-grid">
+    <!-- Menu Items -->
+  </div>
+</div>
+
+<div id="customiseContainer">
+<div class="container">
+  <div id="modal">
+    <div class="header"></div>
+    <div class="content">
+      <table>
+        <thead>
+            <tr>
+              <th>Ingredient</th>
+              <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="footer">
+      <div>Total price: $<span name="itemTotal"></span></div>
+      <button name="submit">Add to Cart</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<script type="text/javascript" src="/assets/js/menu_customise.js"></script>
+<script type="text/javascript" src="/assets/js/menu.js"></script>
+{% endblock %}

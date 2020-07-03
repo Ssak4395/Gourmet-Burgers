@@ -1,0 +1,112 @@
+{% extends "_site.html" %}
+
+{% set title = "Your Order" %}
+
+{% block content %}
+<style>
+#content  {
+	background-color: rgba(0,0,0,0.4);
+	padding: 15px;
+	border-radius: 15px;
+}
+h1, p, div {
+	color: white;
+}
+
+#orderItems > div {
+	margin-bottom: 15px;
+}
+
+.ingredients span {
+	display: block;
+	font-style: italic;
+}
+
+#submit {
+	font-size: 24px;
+}
+
+div[name=section-error]:not(.active) {
+  display: none
+}
+
+div[name=section-error].active ~ div[name=section-data] {
+  display: none;
+}
+
+a, a:visited {
+  color: white;
+}
+</style>
+<h1>Order Summary</h1>
+
+<div name="section-error">
+<p>There are no items in your cart!<p>
+Click <a href="/menu">here</a> to browse the menu
+</div>
+<div name="section-data">
+<p>Below are the details of your order:</p>
+
+<h3>Total: $<span id="totalPrice"></span></h3>
+
+<div id="orderItems">
+	
+</div>
+
+</br>
+
+<td align="center">
+	<button id="submit" type="submit">Place Order</button>
+</td>
+</div>
+
+<script>
+function ready() {
+  if (GourmetBurgers.cart._data.length == 0) {
+    document.querySelector('div[name=section-error]').classList.add('active');
+    return;
+  }
+
+	let total = 0;
+	for (item of GourmetBurgers.cart._data) {
+		container = document.createElement('div');
+
+		let price = GourmetBurgers.cart._calculate(item);
+		total += price * item.qty;
+
+		nameElement = document.createElement('span');
+		nameElement.innerText = `${item.qty}x ${GourmetBurgers._menu[item.id].name} ($${priceToDecimal(price)})`;
+		
+		container.appendChild(nameElement)
+
+		if (item.custom) {
+			ingredientContainer = document.createElement('div');
+			ingredientContainer.classList.add('ingredients');
+
+			for (let ingredientID in item.items) {
+				ingredientElem = document.createElement('span');
+				quantity = item.items[ingredientID];
+				if (quantity == 0) continue;
+				name = GourmetBurgers._inventory[ingredientID].name;
+				suffix = GourmetBurgers._inventory[ingredientID].suffix;
+
+				ingredientElem.innerText = `${quantity}${suffix} ${name}`;
+				ingredientContainer.appendChild(ingredientElem)
+			}
+			container.appendChild(ingredientContainer);
+		}
+
+		document.getElementById("orderItems").appendChild(container);
+	}
+
+	document.getElementById('totalPrice').innerText = priceToDecimal(total);
+
+	document.getElementById('submit').addEventListener('click', async function() {
+		let json = await GourmetBurgers.cart.submitOrder();
+		if (json.url) location.href = json.url;
+	})
+
+	updateTotal();
+}
+</script>
+{% endblock %}

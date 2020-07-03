@@ -1,0 +1,34 @@
+{% extends "_site.html" %}
+
+{% set title = "Order Status" %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="/assets/css/orders_customer.css" />
+{% endblock %}
+
+{% block content %}
+<section name="form">
+  <form>
+    <label>My order number is #</label>
+    <input name="orderID" type="text" placeholder="Enter your order id..." autofocus />
+    <button type="submit">Check</button>
+  </form>
+</section>
+
+<section name="status">
+  <div class="triangle"></div>
+  <div id="error"></div>
+  <div id="statusContainer">
+    <div><b>Order</b> #<span name="orderID"></span></div>
+    <div><b>Price:</b> $<span name="total"></span></div>
+    <div><b>Order Time</b>: <span name="time"></span></div>
+    <div><b>Order Status</b>: <span name="status"></span></div>
+    <div>
+      <div><b>Your Order</b></div>
+      <div name="items"></div>
+    </div>
+    <div><b>Total</b>: $<span name="total"></span></div>
+  </div>
+</section>
+<script type="text/javascript" src="/assets/js/orders_customer.js"></script>
+{% endblock %}
